@@ -193,7 +193,7 @@ namespace B_ControlFlow
                         Console.WriteLine($"({numbers[i]},{numbers[j]})\tIndex: {i},{j}");
                         counter++;
                     }
-                    if (counter == 3)
+                    if (counter == 36)
                         break;
                 }
             }
