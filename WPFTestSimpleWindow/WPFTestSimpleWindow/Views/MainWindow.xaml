@@ -1,0 +1,21 @@
+﻿<Window x:Class="WPFTestSimpleWindow.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTestSimpleWindow.Views"
+        xmlns:viewmodels="clr-namespace:WPFTestSimpleWindow.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="500">
+    <Grid>
+        <Label Content="Test app: left string + right string" HorizontalAlignment="Left" Margin="150,15,0,0" VerticalAlignment="Top"/>
+        
+        <Label Content="String left" HorizontalAlignment="Left" Margin="40,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="String right" HorizontalAlignment="Left" Margin="40,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="String result" HorizontalAlignment="Left" Margin="40,155,0,0" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="120,80,0,0" Text="{Binding LeftString}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Margin="120,120,0,0" Text="{Binding RightString}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Margin="120,160,0,0" Text="{Binding Result}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>
