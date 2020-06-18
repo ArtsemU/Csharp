@@ -1,10 +1,15 @@
-﻿namespace G_LastLesson
+﻿using System;
+
+namespace Home.Learning.DelegateLessons
 {
-    public class Car
+    class Car
     {
         int speed = 0;
 
-        public delegate void TooFast();
+
+        public event Action<int> TooFastDriving;
+        public event Action StopoDriving;
+        public event Action AccelerateCar;
 
         public void Start()
         {
@@ -14,25 +19,59 @@
         public void Accelerate()
         {
             speed += 10;
+
+            if (AccelerateCar != null)
+                AccelerateCar();
+
+            if (speed > 80)
+            {
+                if (TooFastDriving != null)
+                    TooFastDriving(speed);
+            }
         }
 
         public void Stop()
         {
             speed = 0;
+            if (StopoDriving != null)
+                StopoDriving();
         }
+
     }
 
     class Program
     {
+        static Car car;
         static void Main(string[] args)
         {
-            Car car = new Car();
+            car = new Car();
+            car.TooFastDriving += HandleOnTooFast;
+            car.StopoDriving += HandleOnStopDriving;
+            car.AccelerateCar += HandleOnAccelerateCar;
+
+
             car.Start();
 
-            car.Accelerate();
-            car.Accelerate();
-            car.Accelerate();
-            car.Accelerate();
+            for (int i = 0; i < 10; i++)
+            {
+                car.Accelerate();
+            }
+        }
+
+        private static void HandleOnTooFast(int currentSpeed)
+        {
+            Console.WriteLine($"Delegate message! You move too fast! Your speed is {currentSpeed}");
+            car.Stop();
+        }
+
+        private static void HandleOnStopDriving()
+        {
+            Console.WriteLine($"Car is stopped! Current speed is 0");
+        }
+
+        private static void HandleOnAccelerateCar()
+        {
+            Console.WriteLine($"Let GO faster!!!");
         }
     }
 }
