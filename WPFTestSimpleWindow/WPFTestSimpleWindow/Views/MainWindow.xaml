@@ -14,8 +14,8 @@
         <Label Content="String right" HorizontalAlignment="Left" Margin="40,115,0,0" VerticalAlignment="Top"/>
         <Label Content="String result" HorizontalAlignment="Left" Margin="40,155,0,0" VerticalAlignment="Top"/>
 
-        <TextBox HorizontalAlignment="Left" Margin="120,80,0,0" Text="{Binding LeftString}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="leftBox" HorizontalAlignment="Left" Margin="120,80,0,0" Text="{Binding LeftString}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         <TextBox HorizontalAlignment="Left" Margin="120,120,0,0" Text="{Binding RightString}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-        <TextBox HorizontalAlignment="Left" Margin="120,160,0,0" Text="{Binding Result}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox HorizontalAlignment="Left" Margin="120,160,0,0" Text="{Binding leftBox}" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>
