@@ -38,6 +38,7 @@ namespace WPFMetanitTestSimple
         private void button1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             textBox3.Text = "Double clic";
+            MessageBox.Show("Hello!!!!");
         }
     }
 }
