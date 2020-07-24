@@ -40,11 +40,18 @@ namespace Labyrinth
                 Console.WriteLine();
             }
         }
-        public void UpdateField(List<(int, int)> blocks)
+        public void SetBlocksOnField(List<(int, int)> blocks)
         {
             foreach (var block in blocks)
             {
                 field[block.Item1, block.Item2] = "0";
+            }
+        }
+        public void SetPassedWayOnField(List<(int, int)> passedWay)
+        {
+            foreach (var way in passedWay)
+            {
+                field[way.Item1, way.Item2] = "p";
             }
         }
         public (int, int) SetStartPosition()

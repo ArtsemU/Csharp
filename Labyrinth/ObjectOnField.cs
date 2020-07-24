@@ -25,13 +25,23 @@ namespace Labyrinth
 
             for (int i = 0; i < (rows + columns); i++)
             {
-
                 listCoordBlocks.Add((random.Next(0, rows), random.Next(0, columns)));
             }
         }
-        public List<(int, int)> GetRandomBlock()
+        public List<(int, int)> GetListBlocks()
         {
             return listCoordBlocks;
+        }
+
+        public bool IsPossibleStep(string[,] array, (int, int) possibleStep)
+        {
+            int rows = array.GetUpperBound(0) + 1;
+            int columns = array.Length / rows;
+            if ((possibleStep.Item1 < 0 || possibleStep.Item1 > rows || possibleStep.Item2 < 0 || possibleStep.Item2 > rows) && !listCoordBlocks.Contains(possibleStep))
+            {
+                return true;
+            }
+            else return false;
         }
 
 
