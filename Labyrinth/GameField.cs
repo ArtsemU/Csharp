@@ -9,6 +9,9 @@ namespace Labyrinth
         public int Rows = 10;
         public int Columns = 10;
         public string[,] field;
+        public (int, int) startPosition;
+        public (int, int) endPosition;
+
         Random random = new Random();
 
         public GameField()
@@ -16,21 +19,19 @@ namespace Labyrinth
             field = new string[Rows, Columns];       
         }
 
-        public void SetDefValue(string[,] mas)
+        public void SetDefValue()
         {
-            int rows = mas.GetUpperBound(0) + 1;
-            int columns = mas.Length / rows;
-
-            for (int i = 0; i < rows; i++)
+            for (int i = 0; i < Rows; i++)
             {
-                for (int j = 0; j < columns; j++)
+                for (int j = 0; j < Columns; j++)
                 {
-                    mas[i, j] = "*";
+                    field[i, j] = "*";
                 }
             }
         }
         public void DisplayField()
         {
+            Console.Clear();
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
@@ -40,12 +41,19 @@ namespace Labyrinth
                 Console.WriteLine();
             }
         }
-        public void SetBlocksOnField(List<(int, int)> blocks)
+        public void SetCurrentPosition((int, int) possition)
+        {
+            field[possition.Item1, possition.Item2] = "X";
+        }
+
+        public void SetStaticObjectsOnField(List<(int, int)> blocks)
         {
             foreach (var block in blocks)
             {
                 field[block.Item1, block.Item2] = "0";
             }
+            field[startPosition.Item1, startPosition.Item2] = "S";
+            field[endPosition.Item1, endPosition.Item2] = "F";
         }
         public void SetPassedWayOnField(List<(int, int)> passedWay)
         {
@@ -54,19 +62,13 @@ namespace Labyrinth
                 field[way.Item1, way.Item2] = "p";
             }
         }
-        public (int, int) SetStartPosition()
+        public void SetStartPosition()
         {
-            int x0 = 0;
-            int y0 = random.Next(0, Columns);
-            field[x0, y0] = "S";
-            return (x0, y0);
+            startPosition = (0, random.Next(0, Columns-1));
         }
-        public (int, int) SetEndPosition()
-        {
-            int x1 = Rows - 1;
-            int y1 = random.Next(0, Columns);
-            field[x1, y1] = "F";
-            return (x1, y1);
+        public void SetEndPosition()
+        {          
+            endPosition = (Rows - 1, random.Next(0, Columns-1));
         }
 
 

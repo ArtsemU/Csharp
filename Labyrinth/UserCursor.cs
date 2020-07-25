@@ -6,20 +6,16 @@ namespace Labyrinth
 {
     class UserCursor
     {
-        //(int, int) currentPosition;
+        (int, int) currentPosition { get; set; }
+
         public UserCursor()
         {
 
         }
-
-        //public (int, int) GetCurrentPosition()
-        //{
-        //    return currentPosition;
-        //}
-
-
-
-
+        public (int, int) GetCurrentPosition()
+        {
+            return currentPosition;        
+        }
         public (int, int) LeftStep((int, int) currentPosition)
         {
             return (currentPosition.Item1, currentPosition.Item2 - 1);
