@@ -22,17 +22,26 @@ namespace Lesson6
 
             if (choosed == 1)
             {
-                Console.WriteLine($"Task from {studentsQueue.Dequeue()} received");
-                Console.WriteLine($"Task from {studentsQueue.Dequeue()} received");
-                Console.WriteLine($"Task from {studentsQueue.Dequeue()} received");
-                Console.WriteLine($"Task from {studentsQueue.Dequeue()} received");
+                Console.WriteLine($"Task from {studentsQueue.Peek()} received");
+                Console.WriteLine($"{studentsQueue.Dequeue()} got a cup of coffee");
+                Console.WriteLine($"Task from {studentsQueue.Peek()} received");
+                Console.WriteLine($"{studentsQueue.Dequeue()} got a cup of coffee");
+                Console.WriteLine($"Task from {studentsQueue.Peek()} received");
+                Console.WriteLine($"{studentsQueue.Dequeue()} got a cup of coffee");
+                Console.WriteLine($"Task from {studentsQueue.Peek()} received");
+                Console.WriteLine($"{studentsQueue.Dequeue()} got a cup of coffee");
             }
             else if (choosed == 2)
             {
-                Console.WriteLine($"Task from {studentsStack.Pop()} received");
-                Console.WriteLine($"Task from {studentsStack.Pop()} received");
-                Console.WriteLine($"Task from {studentsStack.Pop()} received");
-                Console.WriteLine($"Task from {studentsStack.Pop()} received");
+                Console.WriteLine($"Task from {studentsStack.Peek()} received");
+                Console.WriteLine($"{studentsStack.Pop()} got a cup of coffee");
+                Console.WriteLine($"Task from {studentsStack.Peek()} received");
+                Console.WriteLine($"{studentsStack.Pop()} got a cup of coffee");
+                Console.WriteLine($"Task from {studentsStack.Peek()} received");
+                Console.WriteLine($"{studentsStack.Pop()} got a cup of coffee");
+                Console.WriteLine($"Task from {studentsStack.Peek()} received");
+                Console.WriteLine($"{studentsStack.Pop()} got a cup of coffee");
+
             }
             else
             {
