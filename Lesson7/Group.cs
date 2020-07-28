@@ -21,7 +21,8 @@ namespace Lesson7
         {
             foreach (var student in Classmates)
             {
-                Console.WriteLine($"{student.FirstName} {student.LastName}");
+                Console.WriteLine($"Student: {student.FirstName} {student.LastName}" +
+                    $" has average grade: {student.AverageGrade}");
             }
         }
 
