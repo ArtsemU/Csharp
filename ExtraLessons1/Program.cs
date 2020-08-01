@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace ExtraLessons1
 {
@@ -9,211 +7,69 @@ namespace ExtraLessons1
         static void Main(string[] args)
         {
             Random random = new Random();
-            Console.WriteLine("Массивы -  реализовать сортировку Quicksort");
-
-            int[] array = new int[10];
-            for (int i = 0; i < array.Length; i++)
+            // Создаем массив
+            int[] arr = new int[8];
+            for (int k = 0; k < arr.Length; k++)
             {
-                array[i] = random.Next(0, 30);
+                arr[k] = random.Next(0, 50);
             }
-            PrintArray(array);
+            // Выводим в консоли созданный ранее массив
+            foreach (var item in arr)
+            {
+                Console.Write(item + "  ");
+            }
+            Console.WriteLine();
 
-            List<int> resultList;
-            //QuikS(array);
-            //resultList = SortingWithList(array, 0, array.Length);
-            //Qs(array, 0, array.Length -1);
-            Sorting(array, 0, array.Length - 1);
-            PrintArray(array);
+            Console.ReadLine();
+            // int[] arrTest1 = new int[5] { 10, 11, 21, 10, 6 };
+            TestSorting(arr, 0, arr.Length - 1);
+
+            // Выводим то что получилось
+            foreach (var item in arr)
+            {
+                Console.Write(item + "  ");
+            }
+            Console.ReadLine();
 
         }
-        public static void Sorting(int[] arr, int first, int last)
-        {
-            int p = arr[(last - first) / 2 + first];
-            int temp;
-            int i = first, j = last;
-            while (i <= j)
-            {
-                while (arr[i] < p && i <= last) ++i;
-                while (arr[j] > p && j >= first) --j;
-                if (i <= j)
-                {
-                    temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                    ++i; --j;
-                }
-            }
-            if (j > first) Sorting(arr, first, j);
-            if (i < last) Sorting(arr, i, last);
-        }
 
-
-        static void Qs(int[] arr, int start, int lim)
+        static void TestSorting(int[] arr, int startIndex, int endIndex)
         {
-            int baseEl = (start + lim) / 2;
-            int test = arr[baseEl];
-            int i = start;
-            int j = lim;
-            int temp = 0;
-            while (i <= j)
+            // вот тут начнется методо!
+            // последний элемент и есть наш опорный
+            int pivot = arr[endIndex];
+            int j = startIndex;
+            int i = startIndex;
+            while (i < endIndex)
             {
-                while (arr[i] < test && i <= last)
+                if (arr[i] >= pivot)
                 {
                     i++;
+                    //continue;
                 }
-                while (arr[j] > test && j >= first)
+                else if (arr[i] < pivot)
                 {
-                    j--;
-                }
-                if (i <= j)
-                {
-                    temp = arr[i];
+                    // swop
+                    int temp = arr[i];
                     arr[i] = arr[j];
                     arr[j] = temp;
+                    j++;
+                }
                 i++;
-                j--;
-                }
-                if (j > 0)
-                {
-                    Qs(arr, 0, j);
-                }
-                //if (i < arr.Length-1)
-                //{
-                //    Qs(arr, );
-                //}
-
             }
 
-        static  List<int> SortingWithList(int[] arr, int start, int end)
-        {
-            List<int> leftList = new List<int>();
-            List<int> rightList = new List<int>();
-            int[] newArr = new int[arr.Length];
-            int marker;
-            int tempIndex = (end - start)/2 + start;
-            Console.WriteLine($"Index: {tempIndex}, Value: {arr[tempIndex]}");
-            //start = 0;
-            //end = arr.Length;
-
-            for (int i = start; i < end; i++)
+            int temp2 = arr[endIndex];
+            arr[endIndex] = arr[j];
+            arr[j] = temp2;
+            // рекурсия
+            if (j - startIndex > 1)
             {
-                if (arr[i] < arr[tempIndex])
-                {
-                    leftList.Add(arr[i]);
-                }
-                else
-                    rightList.Add(arr[i]);
+                TestSorting(arr, startIndex, j - 1);
             }
-            marker = leftList.Count;
-
-            leftList.AddRange(rightList);
-            return leftList;
-
-        }
-
-            Console.WriteLine($"i = {i}, j = {j}");
-        }
-
-
-        static public void QuikS(int[] array, int tempIndex)
-        {
-            tempIndex = array.Length / 2;
-            int temp = 0;
-            int p = array[tempIndex];
-
-            Console.WriteLine($"Index: {tempIndex}, Value: {p}");
-            int i = 0;
-            int j = array.Length - 1;
-
-
-            while (i < j)
+            if (endIndex - j > 1)
             {
-                if (array[i] > p && i < tempIndex)
-                {
-                    temp = array[i];
-                    array[i] = p;
-                    array[tempIndex] = temp;
-                    tempIndex = i;
-                }
-                if (array[j] <= p && j > tempIndex)
-                {
-                    temp = array[j];
-                    array[j] = p;
-                    array[tempIndex] = temp;
-                    tempIndex = j;
-                }
-                for (int v = 0; v < array.Length; v++)
-                i++;
-                j--;
+                TestSorting(arr, j, endIndex);
             }
-            Console.WriteLine($"Index: {tempIndex}, Value: {p}");
-        }
-
-        static void QuickSorting(int[] array)
-        {
-            List<int> leftArr = new List<int>();
-            List<int> rightArr = new List<int>();
-            PrintArray(array);
-
-            int a = array[array.Length / 2];
-            int indexLeft = 5;
-
-            for (int i = 0; i < array.Length; i++)
-            {
-
-                if (array[i] <= a)
-                {
-                    leftArr.Add(array[i]);
-                }
-                else
-                    rightArr.Add(array[i]);
-            }
-            if (leftArr.Count > 2)
-            {
-                QuickSorting(leftArr.ToArray());
-            }
-            if (rightArr.Count > 2)
-            {
-                QuickSorting(rightArr.ToArray());
-            }
-        }
-
-        static void PrintArray(int[] mass)
-        {
-            for (int i = 0; i < mass.Length; i++)
-            {
-                Console.Write(mass[i] + "  ");
-            }
-            Console.WriteLine();
-        }
-        static void PrintArray(List<int> mass)
-        {
-            for (int i = 0; i < mass.Count; i++)
-            {
-                Console.Write(mass[i] + "  ");
-            }
-            Console.WriteLine();
-        }
-
-        public static void sorting(int[] arr, int first, int last)
-        {
-            int p = arr[(last - first) / 2 + first];
-            int temp;
-            int i = first, j = last;
-            while (i <= j)
-            {
-                while (arr[i] < p && i <= last) ++i;
-                while (arr[j] > p && j >= first) --j;
-                if (i <= j)
-                {
-                    temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                    ++i; --j;
-                }
-            }
-            if (j > first) sorting(arr, first, j);
-            if (i < last) sorting(arr, i, last);
         }
     }
 }
