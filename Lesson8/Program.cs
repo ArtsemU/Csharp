@@ -10,20 +10,18 @@ namespace Lesson8
             char[] charsRight = new char[] { ' ', 'R', 'i', 'g','h','t',' ',' ','!'};
 
             MyString mystrLeft = new MyString(charsLeft);
-            mystrLeft.MyPrint();
-            MyString mystrRight = new MyString(charsRight);
-            mystrRight.MyPrint();
-            var isEq = mystrLeft.IsEquals(mystrRight);
-            Console.WriteLine($"String is equals? Answer is {isEq}");
-            MyString myStringThee = new MyString();
-            Console.WriteLine($"Lenght is {myStringThee.Length}");
-            myStringThee = mystrLeft.MyConcat(mystrRight);
-            Console.WriteLine($"Lenght is {mystrLeft.Length}");
-            Console.WriteLine($"Lenght is {myStringThee.Length}");
-            myStringThee.MyPrint();
-            mystrLeft.MyPrint();
-            mystrRight.MyPrint();
-            Console.ReadLine();
+            var x = mystrLeft.MyLength;
+			Console.WriteLine(x);
+			Console.WriteLine(mystrLeft[2]);
+			mystrLeft.MyPrint();
+			MyString mystrRight = new MyString(charsRight);
+			mystrRight.MyPrint();
+			var isEq = mystrLeft.IsEquals(mystrRight);
+			Console.WriteLine($"String is equals? Answer is {isEq}");
+			var indexSpace = mystrLeft.MyIndexOf(' ', 4);
+			Console.WriteLine(indexSpace);
+
+			Console.ReadLine();
 
         }
     }
