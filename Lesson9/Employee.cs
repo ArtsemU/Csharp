@@ -10,11 +10,11 @@ namespace Lesson9
         public string LastName { get; set; }
         public EmployeeStatus UnEmployeeStatus { get; set; }
 
-        public Employee(string name, string surname)
+        public Employee(string name, string surname, EmployeeStatus status = EmployeeStatus.UNFORMED)
         {
             FirstName = name;
             LastName = surname;
-            UnEmployeeStatus = EmployeeStatus.UNFORMED;
+            UnEmployeeStatus = status;
         }
 
         public void ChangeEmployeeStatus(EmployeeStatus newStatus)
