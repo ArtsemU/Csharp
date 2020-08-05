@@ -1,6 +1,6 @@
 ﻿namespace Lesson9
 {
-    enum EmployeeStatus
+    public enum EmployeeStatus
     {
         EMPLOYEE,
         MANAGER,
