@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Lesson9
+namespace Lesson10
 {
+    // не совсем понятно почему данный подход нарушает сингл тон? 
     class MyTrello
     {
         // Кажется хорошей идеей перенести всю логику отчетности либо в отдельный класс, либо сюда
-        public List<Board> ListBoards { get; set; }
+        public List<Board> Boards { get; set; }
         public MyTrello()
         {
-            ListBoards = new List<Board>();
+            Boards = new List<Board>();
         }
-        public void AddBoard(Board board)
-        {
-            ListBoards.Add(board);
-        }
+
     }
 }

@@ -1,9 +1,13 @@
-﻿namespace Lesson9
+﻿namespace Lesson10
 {
     enum CardStatus
     { 
-        PLANNING,
+        NEW,
+        TODO,
+        POSTPONED,
         INPROGRESS,
+        RESOLVED,
+        REOPENED,
         DONE
     }
 }

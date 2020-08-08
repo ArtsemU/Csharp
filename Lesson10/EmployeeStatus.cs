@@ -1,10 +1,11 @@
-﻿namespace Lesson9
+﻿namespace Lesson10
 {
-    public enum EmployeeStatus
+    public enum Status
     {
         EMPLOYEE,
         MANAGER,
         FREELANSE,
-        UNFORMED
+        UNFORMED,
+        FIRED
     }
 }

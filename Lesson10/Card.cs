@@ -1,45 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Lesson9
+namespace Lesson10
 {
-    class Card
+    class Card : ITarget
     {
-        // id - не реализован айдишник карточки
-        public CardStatus CardStatus { get; set; }
-        public string CardTitle { get; set; }
+        private CardStatus _status;
+        public string Title { get; set; }
         public string Description { get; set; }
-        public Employee AssignedEmployee { get; set; }
-        public DateTime Ttl { get; set; }
+        public List<CardStatus> HistoryStatusChanges { get;  set; }
+        public DateTime Ttl { get; set; } // расширить
+        public CardStatus Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                if (_status != CardStatus.RESOLVED)
+                {                    
+                    _status = value;
+                    HistoryStatusChanges.Add(_status);
+                }
+                // else throw new ArgumentException("Cant change final status");
+                // для тестов
+                else Console.WriteLine("Cannot change final status");
+            }
+        }
 
-        // не уверен что "Employee anEmployee = null" хорошая идея
-        public Card(string title = "", string descr = "", Employee anEmployee = null)
+        public Employee Employee { get; set; }
+
+        public Card(string title, string descr = "", Employee anEmployee = null)
         {
-            CardTitle = title;
+            HistoryStatusChanges = new List<CardStatus>();
+
+            Title = title;
             Description = descr;
-            AssignedEmployee = anEmployee;
-            // Дефолтовый статус
-            CardStatus = CardStatus.PLANNING;
-            // Даем стандартно неделю на исполнение
-            Ttl = DateTime.Now.AddDays(7);
+            Employee = anEmployee;
+            Status = CardStatus.NEW;
         }
-        public void SetNewCardStatus(CardStatus newStatus)
+
+        public string DisplayInfo()
         {
-            CardStatus = newStatus;
+            return $"Card {Title} assigned {Employee?.FirstName}";
         }
-        public void SetNewAssign(Employee assign)
+        public void PrintHistoryToConcole()
         {
-            AssignedEmployee = assign;
-        }
-        public void UpdateTTL(DateTime date)
-        {
-            Ttl = date;
-        }
-        public override string ToString()
-        {
-            return $"Card {CardTitle} with description: {Description}. " +
-                $"Assigned to {AssignedEmployee?.FirstName}. Status: {CardStatus}. TTL till {Ttl.ToShortDateString()}";
+            if (HistoryStatusChanges.Count > 0)
+            {
+                foreach (var item in HistoryStatusChanges)
+                {
+                    Console.WriteLine(item);
+                }
+            }
         }
     }
 }
