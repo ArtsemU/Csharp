@@ -39,6 +39,8 @@ namespace Lesson10
             Description = descr;
             Employee = anEmployee;
             Status = CardStatus.NEW;
+            // устанавливаем ТТЛ для карты + 1 неделя по умолчанию
+            Ttl = DateTime.Now.AddDays(7);
         }
 
         public string DisplayInfo()

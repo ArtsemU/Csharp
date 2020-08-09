@@ -6,82 +6,31 @@ namespace Lesson10
     {
         static void Main(string[] args)
         {
-            #region Old Code
-            // // создаем первую борду
-            // Board boardFamily = new Board("My Task board");
-            // myTrello.AddBoard(boardFamily);
-
-            // // создаем трех пользователей и 3 карточки для них
-            // Employee teacher = new Employee("Master", "Yoda");
-            // Employee lukeSkywalker = new Employee("Luke", "Skywalker");
-            // Employee leiaSkywalker = new Employee("Leia", "Skywalker");
-
-            // Card teacherCard = new Card("Master card", "Main Jedi", teacher);
-            // Card lukeCard = new Card("Brother task", "How save Galaxy", lukeSkywalker);
-            //// Card leiaCard = new Card("Syster task", "How care about Galaxy", leiaSkywalker);
-
-
-
-            // boardFamily.AddCardToBoard(teacherCard);
-            // boardFamily.AddCardToBoard(lukeCard);
-            // // Если не забуду, то обязательно спрошу про данную ситуацию. При таком создании Карточки
-            // // можно обратится к leiaCard только через цикл. а что если нужен именно этот экземпляр?
-            // // создать переменную и работать с ней?
-            // boardFamily.AddCardToBoard(new Card("Syster task", "How care about Galaxy", leiaSkywalker));
-
-            // teacher.UpdateStatus(Status.MANAGER);
-
-            // // всем картам что полуочили назначение, меняем статус на Прогресс
-            // foreach (var item in boardFamily.listCards)
-            // {
-            //     item.SetNewCardStatus(CardStatus.INPROGRESS);
-            // }
-            // boardFamily.ShowCardsOnBoard();
-            // Console.WriteLine();
-
-            // // Создаем 2ю борду
-            // Board boardDarkSide = new Board("My dark side");
-            // myTrello.AddBoard(boardDarkSide);
-
-            // Employee emperor = new Employee("Emperor", "Palpatine", Status.MANAGER);
-            // Employee darthVader = new Employee("Darth", "Vader");
-            // Employee lexa = new Employee("Leha", "Aleha");
-
-            // Card conquerGalaxy = new Card("Conquer the galaxy", "Power of dark side", emperor);
-            // Card serveProtect = new Card("Server and Protect", "Power of dark side", darthVader);
-            // Card lexaCard = new Card("Card for Lexa", "Power card!", lexa);
-
-            // boardDarkSide.AddCardToBoard(conquerGalaxy);
-            // boardDarkSide.AddCardToBoard(serveProtect);
-            // boardDarkSide.AddCardToBoard(lexaCard);
-
-            // conquerGalaxy.UpdateTTL(DateTime.Now);
-            // foreach (var card in boardDarkSide.AllExpiredCards())
-            // {
-            //     Console.WriteLine($"Expiration status is: {card.CardTitle}"); 
-            // }
-
-            // Console.WriteLine();
-            // boardDarkSide.ShowCardsOnBoard();
-            // Console.ReadLine();
-            #endregion
             Console.WriteLine("Welcome to MyTrello!");
-            User user = new User("1111", "222");
-            Employee empl1 = new Employee("Name1", "Surname1", Status.FREELANSE);
-            Console.WriteLine(empl1.DisplayName());
-            Console.WriteLine($"Employee status is {empl1.UnStatus}");
-            empl1.UnStatus = Status.MANAGER;
-            Console.WriteLine($"Employee status is {empl1.UnStatus}");
+            User user = new User("name user", "Surname user");
+            Employee empl1 = new Employee("empl1 name", "empl1 surname", Status.MANAGER);
+            Employee empl2 = new Employee("empl2 name", "empl2 surname", Status.FREELANSE);
+            Employee empl3 = new Employee("empl3 name", "empl3 surname", Status.EMPLOYEE);
+            Employee empl4 = new Employee("empl4 name", "empl4 surname", Status.EMPLOYEE);
 
-            Card testCard1 = new Card("Title1", "bla bla bla1", empl1);
-            Card testCard2 = new Card("Title2", "bla bla bla2", empl1);
-            testCard1.Status = CardStatus.POSTPONED;
-            testCard1.Status = CardStatus.RESOLVED;
-            testCard1.Status = CardStatus.TODO;
-  
-            testCard1.PrintHistoryToConcole();
+            Card card1 = new Card("Card 1", "Descr 1", empl1);
+            Card card2 = new Card("Card 2", "Descr 1", empl1);
+            Card card3 = new Card("Card 3", "Descr 1", empl2);
+            Card card4 = new Card("Card 4", "Descr 1");
 
+            Board board1 = new Board("My board 1");
+            board1.Cards.Add(card1);
+            board1.Cards.Add(card2);
+            board1.Cards.Add(card3);
+            board1.Cards.Add(card4);
+            Console.WriteLine(board1.DisplayInfo());
+            ManagementModule management = new ManagementModule();
+            management.Board = board1;
 
+            foreach (var item in management.UnAssignCards)
+            {
+                Console.WriteLine(item.Title);
+            }
             Console.ReadLine();
         }
     }

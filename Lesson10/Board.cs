@@ -4,22 +4,50 @@ using System.Linq;
 
 namespace Lesson10
 {
-    class Board
+    class Board : ITarget
     {
+        #region
+        //private List<Card> _expiredCards;
+        //private List<Card> _unAssignCards;
+        //public List<Card> ExpiredCards
+        //{
+        //    get
+        //    {
+        //        _expiredCards = (List<Card>)(from card in Cards
+        //                                    where card.Ttl < DateTime.Now
+        //                                    select card);
+        //        return _expiredCards;
+        //    }
+        //}
+        //public List<Card> UnAssignCards
+        //{
+        //    get
+        //    {
+        //        _unAssignCards = (List<Card>)(from card in Cards
+        //                                    where card.Employee == null
+        //                                    select card);
+        //        return _unAssignCards;
+        //    }
+        //}
+        #endregion
         public List<Card> Cards { get; set; }
         public List<Employee> Team { get; set; } // не пригодился
         public string Title { get; set; }
-        public Board(string title)
+        public string Description { get; set; }
+
+        public Board(string title, string descr = "")
         {
             Title = title;
+            Description = descr;
+
             Cards = new List<Card>();
             Team = new List<Employee>();
+
+            //_expiredCards = new List<Card>();
+            //_unAssignCards = new List<Card>();
         }
-        public void AddCardToBoard(Card card)
-        {
-            Cards.Add(card);
-        }
-        public void ShowCardsOnBoard()
+
+        public void PrintCardsOnBoardToConsole()
         {
             Console.WriteLine($"There are next Cards on board {Title}:");
             foreach (var card in Cards)
@@ -28,17 +56,9 @@ namespace Lesson10
             }
         }
 
-        // пример реализации менеджерских запросов. правильнее было бы через линк
-        // показать карточки, у которых вышел срок годности TTL
-        public List<Card> AllExpiredCards()
+        public string DisplayInfo()
         {
-            List<Card> expiredCards = new List<Card>();
-            expiredCards = (List<Card>)(from card in Cards
-                          where card.Ttl < DateTime.Now
-                          select card);
-
-            return expiredCards;
+            return $"Board {Title}";
         }
-
     }
 }
