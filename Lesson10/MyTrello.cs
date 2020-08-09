@@ -13,6 +13,5 @@ namespace Lesson10
         {
             Boards = new List<Board>();
         }
-
     }
 }

@@ -29,6 +29,7 @@
         }
         public (int, int) DownStep((int, int) currentPosition)
         {
+
             return (currentPosition.Item1 + 1, currentPosition.Item2);
         }
     }

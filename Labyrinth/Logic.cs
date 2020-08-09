@@ -13,14 +13,12 @@ namespace Labyrinth
 
         public Logic()
         {
-            // Создаем экземпляры классов
             field = new GameField();
             objOnField = new ObjectOnField();
             userPosition = new UserCursor();
         }
         public void MainLogick()
         {
-            // Вызываем все необходимые методы перед началом игры
             field.SetDefValue();
             field.SetStartPosition();
             field.SetEndPosition();
@@ -29,14 +27,10 @@ namespace Labyrinth
             field.DisplayField();
             currentPosition = field.startPosition;
 
-            // Ниже код противоречит DNRY. По хорошему надо вынести все в методы
-            // Почему WASD а не курсорные клавиши? Просто так привычнее
-            // Так и не понял как в ObjectOnField передать кол-во строк и столцов. Пришлось передавать само поле
-            // хотя может так даже и лучше, ObjectOnField ничего не знает про само поле
             int count = 0;
             while (count < limitSteps || currentPosition == field.endPosition)
             {
-                Console.WriteLine($"Step - {count + 1}");
+                Console.WriteLine($"Step: {count + 1}");
                 switch (Console.ReadKey(true).Key)
                 {
                     // Идея с 'switch -case' подсмотрел в интернете, изначально планировалось if
@@ -49,8 +43,6 @@ namespace Labyrinth
                         }
                         else
                         {
-                            // Этот блок можно было бы и убрать. но тогда нет перерисовки массива
-                            // Решил оставитьдля однотипности 
                             field.DisplayField();
                         }
                         break;
@@ -104,8 +96,9 @@ namespace Labyrinth
                 {
                     Console.WriteLine("Sorry! You lose!");
                 }
-               
             };
+            Console.WriteLine("End");
+            Console.ReadLine();
         }
     }
 }
