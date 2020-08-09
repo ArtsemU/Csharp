@@ -9,7 +9,7 @@ namespace Lesson10
         public string Title { get; set; }
         public string Description { get; set; }
         public List<CardStatus> HistoryStatusChanges { get;  set; }
-        public DateTime Ttl { get; set; } // расширить
+        public DateTime Ttl { get; set; } 
         public CardStatus Status
         {
             get
@@ -57,5 +57,7 @@ namespace Lesson10
                 }
             }
         }
+
+        
     }
 }

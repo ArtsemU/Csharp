@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace Lesson10
@@ -19,6 +18,7 @@ namespace Lesson10
                 return _expiredCards;
             }
         }
+
         public List<Card> UnAssignCards
         {
             get
@@ -31,7 +31,6 @@ namespace Lesson10
 
         public ManagementModule()
         {
-
             _expiredCards = new List<Card>();
             _unAssignCards = new List<Card>();
         }

@@ -2,10 +2,10 @@
 {
     public enum Status
     {
-        EMPLOYEE,
-        MANAGER,
-        FREELANSE,
-        UNFORMED,
-        FIRED
+        UNFORMED=1,
+        EMPLOYEE=2,
+        MANAGER=3,
+        FREELANSE=4,
+        FIRED=5
     }
 }
