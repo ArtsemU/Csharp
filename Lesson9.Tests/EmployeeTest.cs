@@ -1,5 +1,6 @@
 using System;
 using Xunit;
+using Moq;
 
 namespace Lesson9.Tests
 {
@@ -30,6 +31,16 @@ namespace Lesson9.Tests
 		{
 			Employee employee = new Employee(null, "");
 			Assert.NotNull(employee);
+		}
+		[Fact]
+		public void Test()
+		{
+			var moq = new Mock<IEmploee>();
+			moq.Setup(a => a.GetLastName()).Returns("Hello World!");
+
+			var s = moq.Object.GetLastName();
+			Assert.NotNull(s);
+			Assert.Equal("Hello World!", s);
 		}
 	}
 }

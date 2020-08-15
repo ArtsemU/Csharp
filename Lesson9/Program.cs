@@ -6,8 +6,11 @@ namespace Lesson9
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to MyTrello!");
+            Employee empl = new Employee("111", "222");
 
+			Console.WriteLine(empl.GetLastName());
+            Console.WriteLine("Welcome to MyTrello!");
+            
             MyTrello myTrello = new MyTrello();
 
             // создаем первую борду
