@@ -35,10 +35,10 @@ namespace Lesson10
             Card card5 = new Card("Card 5", "Descr 5", empl5);
 
             // Меняем статусы, пригодится позже
-            card1.Status = CardStatus.INPROGRESS;
-            card1.Status = CardStatus.REOPENED;
-            card1.Status = CardStatus.RESOLVED;
-            card1.Status = CardStatus.REOPENED;
+            //card1.Status = CardStatus.INPROGRESS;
+            //card1.Status = CardStatus.REOPENED;
+            //card1.Status = CardStatus.RESOLVED;
+            //card1.Status = CardStatus.REOPENED;
             card2.Ttl = DateTime.Now;
 
             
@@ -81,7 +81,15 @@ namespace Lesson10
                 board1.Cards.RemoveAt(0);
             }
             Console.WriteLine(board1.ToString());
+
+			// Event
+			card1.CardStatusChangedEvent += (obj, e)=>
+            {
+				Console.WriteLine($"Status changed by EventHandler {e}");
+            };
+
+            card1.Status = CardStatus.NEW;
             Console.ReadLine();
         }
-    }
+	}
 }
