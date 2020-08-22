@@ -11,6 +11,25 @@ namespace Lesson11
             student1.PrintName();
             Console.WriteLine(student1.Equals(student2));
 
+            try
+            {
+                Student student3 = new Student("", "Test", Faculty.MATH);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error!!!");
+                Console.WriteLine(e.Message);
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine("Error!!!");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("____");
+            }
+
             Professor prof1 = new Professor("Leonard", "Hofstadter", Faculty.CIVILENGINEERING);
             Professor prof2 = new Professor("Sheldon", "Cooper", Faculty.CIVILENGINEERING);
             prof1.PrintName();

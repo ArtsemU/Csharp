@@ -11,6 +11,29 @@ namespace Lesson11
             Faculty = faculty;
         }
 
+        private string _name;
+
+        public override string Name 
+        {
+            get 
+            {
+                    return _name;               
+            }
+            set
+            {
+                if (value == "")
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                else
+                    _name = value;
+            }
+        }
+
         public override bool Equals(Person person)
         {
             if (this.Faculty == person.Faculty)

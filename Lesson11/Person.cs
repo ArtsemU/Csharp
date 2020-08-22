@@ -5,7 +5,7 @@ namespace Lesson11
     public abstract class Person
     {
         public Faculty Faculty { get; set; }
-        public string Name { get; set; }
+        public abstract string Name { get; set; }
         public string Surame { get; set; }
         public int Age
         {

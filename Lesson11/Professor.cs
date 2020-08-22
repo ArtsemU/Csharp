@@ -1,11 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lesson11
 {
     class Professor : Person
     {
+
+        private string _name;
+
+        public override string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (value == "")
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                if (value == null)
+                {
+                    throw new ArgumentNullException();
+                }
+                else
+                    _name = value;
+            }
+        }
+
         public Professor(string name, string surname, Faculty faculty) : base(name, surname)
         {
             Faculty = faculty;
@@ -25,7 +47,7 @@ namespace Lesson11
 
         public override void PrintName()
         {
-            Console.WriteLine($"Prof {Name} {Surame}");
+            Console.WriteLine($"Prof. {Name} {Surame}");
         }
     }
 }
