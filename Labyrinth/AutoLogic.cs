@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Labyrinth
 {
@@ -48,11 +46,11 @@ namespace Labyrinth
                     objOnField.Passed.Add(currentPosition);
                 }
                 else
-                { 
+                {
                     MoveUp();
                     objOnField.Passed.Add(currentPosition);
                 }
-                            
+
                 count++;
                 if (currentPosition == field.endPosition)
                 {
