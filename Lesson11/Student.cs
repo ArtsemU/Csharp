@@ -17,7 +17,7 @@ namespace Lesson11
         {
             get 
             {
-                    return _name;               
+                return _name;               
             }
             set
             {
