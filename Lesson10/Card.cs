@@ -11,10 +11,17 @@ namespace Lesson10
 		public string Description { get; set; }
 		public List<CardStatus> HistoryStatusChanges { get; set; }
 		public DateTime Ttl { get; set; }
+
+		public delegate void DelegatMessage();
+		public event DelegatMessage testEventMessage;
 		public CardStatus Status
 		{
 			get
 			{
+                if (_status == CardStatus.NEW)
+                {
+					testEventMessage();
+				}
 				return _status;
 			}
 			set
@@ -24,8 +31,7 @@ namespace Lesson10
 					_status = value;
 					HistoryStatusChanges.Add(_status);
 				}
-				// else throw new ArgumentException("Cant change final status");
-				// для тестов
+
 				else throw new InvalidStatusException ("Cannot change final status");
 
 				CardStatusChangedEvent?.Invoke(this, _status);
