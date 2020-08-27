@@ -29,7 +29,6 @@ namespace Lesson10
 				else Console.WriteLine("Cannot change final status");
 
 				CardStatusChangedEvent?.Invoke(this, _status);
-
 			}
 		}
 

@@ -85,6 +85,8 @@ namespace Lesson10
 			// Event
 			card1.CardStatusChangedEvent += (obj, e)=>
             {
+				Console.WriteLine(obj.ToString());
+				Console.WriteLine(e.ToString());
 				Console.WriteLine($"Status changed by EventHandler {e}");
             };
 
