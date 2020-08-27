@@ -1,6 +1,6 @@
 ﻿namespace Lesson10
 {
-    enum CardStatus
+    public enum CardStatus
     { 
         NEW,
         TODO,

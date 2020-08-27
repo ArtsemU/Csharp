@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Lesson10
 {
-	class Card : ITarget
+	public class Card : ITarget
 	{
 		public event EventHandler<CardStatus> CardStatusChangedEvent;
 		private CardStatus _status;
@@ -26,7 +26,7 @@ namespace Lesson10
 				}
 				// else throw new ArgumentException("Cant change final status");
 				// для тестов
-				else Console.WriteLine("Cannot change final status");
+				else throw new InvalidStatusException ("Cannot change final status");
 
 				CardStatusChangedEvent?.Invoke(this, _status);
 			}
