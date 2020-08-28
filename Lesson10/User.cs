@@ -14,7 +14,10 @@ namespace Lesson10
             FirstName = name;
             LastName = surname;
         }
+		public User()
+		{
 
+		}
         virtual public string DisplayName()
         {
             return $"Name: {FirstName}, Surname: {LastName}";

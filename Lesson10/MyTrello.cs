@@ -15,12 +15,12 @@ namespace Lesson10
             Boards = new List<Board>();
         }
 
-        public void Message()
+        public void Message(object obj, EventArgs e)
         {
             Console.WriteLine("You try invoke start Card. Please change status before working");
         }
 
-        public void ExpandMessage()
+        public void ExpandMessage(object obj, EventArgs e)
         {
             Console.WriteLine("The method where some emails will be gnerated");
         }

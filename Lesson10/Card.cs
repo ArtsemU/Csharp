@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Lesson10
 {
+
+	[Serializable]
 	public class Card : ITarget
 	{
 		public event EventHandler<CardStatus> CardStatusChangedEvent;
@@ -12,15 +15,17 @@ namespace Lesson10
 		public List<CardStatus> HistoryStatusChanges { get; set; }
 		public DateTime Ttl { get; set; }
 
-		public delegate void DelegatMessage();
-		public event DelegatMessage testEventMessage;
+		// EventHandler
+		//public delegate void DelegatMessage();
+		public event EventHandler testEventMessage;
+		
 		public CardStatus Status
 		{
 			get
 			{
                 if (_status == CardStatus.NEW)
                 {
-					testEventMessage();
+					testEventMessage?.Invoke(this, EventArgs.Empty);
 				}
 				return _status;
 			}
@@ -39,6 +44,11 @@ namespace Lesson10
 		}
 
 		public Employee Employee { get; set; }
+
+		public Card()
+		{
+
+		}
 
 		public Card(string title, string descr = "", Employee anEmployee = null)
 		{
@@ -71,7 +81,5 @@ namespace Lesson10
 		{
 			Console.WriteLine("___Event handle___");
 		}
-
-
 	}
 }

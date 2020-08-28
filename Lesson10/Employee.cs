@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Lesson10
 {
+    [Serializable]
     public class Employee : User
     {
         public Status UnStatus { get; set; }
@@ -12,6 +13,9 @@ namespace Lesson10
         {
             UnStatus = status;
         }
+		public Employee()
+		{
 
+		}
     }
 }

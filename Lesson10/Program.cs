@@ -1,5 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Text.Json;
+using System.Xml.Serialization;
+using System.Xml;
+using System.Threading;
 
 namespace Lesson10
 {
@@ -10,6 +14,7 @@ namespace Lesson10
 			// В классе Card создали событие
 			// В классе MyTrello создали подписчиков - 2 метода, в обоих для тестов выводим в консоль сообщения
 			// в Мейне подписываемся
+			// Сохраняем объекты Карты и Рабочий в txt, json и xml файлы
 
 			Console.WriteLine("Welcome to MyTrello!");
 			MyTrello myTrello = new MyTrello();
@@ -24,16 +29,22 @@ namespace Lesson10
 			Employee empl1 = new Employee("empl1 name", "empl1 surname", Status.MANAGER);
 			Card card1 = new Card("Card 1", "Descr 1", empl1);
 
-			// Запись в файл
+			card1.testEventMessage += myTrello.Message;
+			card1.testEventMessage += myTrello.ExpandMessage;
 
+			// Запись в файл
 			string dataFolderPath = "TestFolder";
 			string cardFileName = "Card.txt";
+			string cardFileNameXml = "Card.xml";
+			string cardFileNameJson = "Card.json";
 			string cardFileName1 = ""; // для проверки исключения
 
 			if (!Directory.Exists(dataFolderPath))
 			{
 				Directory.CreateDirectory(dataFolderPath);
 			}
+
+			//каждый раз удаляем все лишние файлы
 			if (Directory.Exists(dataFolderPath))
 			{
 				var listOfFiles = Directory.GetFiles(dataFolderPath);
@@ -47,19 +58,15 @@ namespace Lesson10
 				}
 			}
 
-			Console.ReadLine();
+			// txt
+			SaveToFile(card1, dataFolderPath, cardFileName);
 
-			try
-			{
-				File.WriteAllText($"{dataFolderPath}/{cardFileName}", $"New card was written: {card1.Title}; {card1.Description}; {card1.Ttl};");
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine($"Exception was happeed {e.Message}");
-			}
+			// xml
+			SaveToFileXML(empl1, dataFolderPath, cardFileNameXml);
 
-			// конец записи
-
+			// а тут json
+			string jsonCard = JsonSerializer.Serialize<Card>(card1);
+			SaveToFileJson(jsonCard, dataFolderPath, cardFileNameJson);
 
 			#region
 			//Employee empl2 = new Employee("empl2 name", "empl2 surname", Status.FREELANSE);
@@ -139,12 +146,42 @@ namespace Lesson10
 				Console.WriteLine($"Status changed by EventHandler {e}");
 			};
 
-			card1.testEventMessage += myTrello.Message;
-			card1.testEventMessage += myTrello.ExpandMessage;
-
 			card1.Status = CardStatus.NEW;
 			Console.WriteLine(card1.Status);
 			Console.ReadLine();
+		}
+
+		private static void SaveToFileXML(Employee empl1, string dataFolderPath, string cardFileNameXml)
+		{
+			var xs = new XmlSerializer(typeof(Employee));
+			TextWriter txtWriter = new StreamWriter(dataFolderPath + "/" + cardFileNameXml);
+			xs.Serialize(txtWriter, empl1);
+			txtWriter.Close();
+		}
+
+		private static void SaveToFile(Card card1, string dataFolderPath, string cardFileName)
+		{
+			try
+			{
+				File.WriteAllText($"{dataFolderPath}/{cardFileName}", $"New card was written: {card1.Title}; {card1.Description}; {card1.Ttl};");
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"Exception was happeed {e.Message}");
+			}
+		}
+
+		private static void SaveToFileJson(string card, string dataFolderPath, string cardFileName)
+		{
+			try
+			{
+				File.AppendAllText($"{dataFolderPath}/{cardFileName}", card);
+				//File.WriteAllText($"{dataFolderPath}/{cardFileName}", card);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine($"Exception was happeed {e.Message}");
+			}
 		}
 	}
 }
