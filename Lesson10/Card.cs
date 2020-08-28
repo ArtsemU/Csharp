@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace Lesson10
 {
@@ -18,13 +17,13 @@ namespace Lesson10
 		// EventHandler
 		//public delegate void DelegatMessage();
 		public event EventHandler testEventMessage;
-		
+
 		public CardStatus Status
 		{
 			get
 			{
-                if (_status == CardStatus.NEW)
-                {
+				if (_status == CardStatus.NEW)
+				{
 					testEventMessage?.Invoke(this, EventArgs.Empty);
 				}
 				return _status;
@@ -37,7 +36,7 @@ namespace Lesson10
 					HistoryStatusChanges.Add(_status);
 				}
 
-				else throw new InvalidStatusException ("Cannot change final status");
+				else throw new InvalidStatusException("Cannot change final status");
 
 				CardStatusChangedEvent?.Invoke(this, _status);
 			}
