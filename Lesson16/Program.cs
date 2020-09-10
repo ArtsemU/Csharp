@@ -8,6 +8,10 @@ namespace Lesson16
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("1. Fibonachi");
+            Fibonachi(15);
+            Console.WriteLine();
+
             Console.WriteLine("2. Преобразовать его в другое число, цифры которого будут следовать в обратном порядке");
             NumberRevers(112233);
             Console.WriteLine();
@@ -30,9 +34,21 @@ namespace Lesson16
 
             Console.ReadLine();
         }
-        public static void Geometricprogression(int n)
+        public static void Fibonachi(int n)
         {
-            //progt i = b0 * 
+            List<int> list = new List<int>();
+            list.Add(0);
+            list.Add(1);
+
+            for (int i = 2; i < n; i++)
+            {
+                list.Add(list[i-1] + list[i-2]);
+            }
+
+            foreach (var item in list)
+            {
+                Console.Write($"{item} ");
+            }
         }
 
         public static List<int> ArithmeticProgression(int n, int a0, int b)
